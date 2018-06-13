@@ -3,11 +3,13 @@
  */
 // tslint:disable no-any no-unsafe-any
 export interface ICamel {
-    [key: string]: string | ICamel | ICamel[];
+    [key: string]: camel;
 }
 
-export type camel = string | ICamel | ICamel[];
+export type allCamel = string | ICamel;
 
-export const isCamel: Function = (obj: object): boolean => {
-    return true;
-};
+export type camel = allCamel | allCamel[];
+
+export function isCamel(obj: object): obj is ICamel {
+    return Object.prototype.toString.call(obj) === '[object Object]';
+}

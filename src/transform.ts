@@ -3,5 +3,7 @@
  */
 
 export default (input: string): string => {
-    return '22';
+    return input.replace(/[-_][^-_]/g, (match: string) => {
+        return match.charAt(1).toUpperCase();
+    });
 };
