@@ -1,6 +1,6 @@
-const camel = require('../src/').default;
+const camel = require('../dist/camel-data').default;
 
-global.camel = camle;
+global.camel = camel;
 
 describe('camel data', () => {
     describe('test string', () => {
