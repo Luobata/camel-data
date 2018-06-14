@@ -8,4 +8,7 @@ it('basic usage', function() {
 
     result = camel('function-name');
     assert.equal(result, 'functionName');
+
+    result = camel('user.name');
+    assert.equal(result, 'userName');
 });

@@ -1,13 +1,15 @@
 /**
  * @description canel
  */
-import { allCamel, camel, isCamel, ICamel } from '@/interface';
+import { isArray, isObject, isString } from '@/help';
+import { allCamel, camel, ICamel } from '@/interface';
 import trans from '@/transform';
-import { isArray, isString, isObject } from '@/help';
+
+// tslint:disable no-any no-unsafe-any
 
 const camelTrans: Function = (input: camel): camel => {
     if (isArray(input)) {
-        // ICamel[]
+        // type ICamel[]
         return input.map(
             (v: allCamel): allCamel => {
                 return <allCamel>camelTrans(v);
@@ -15,7 +17,7 @@ const camelTrans: Function = (input: camel): camel => {
         );
         // } else if (isCamel(input)) {
     } else if (isObject(input)) {
-        // ICamel
+        // typ ICamel
         const result: ICamel = {};
         const keys: string[] = Object.keys(input);
         for (const i of keys) {

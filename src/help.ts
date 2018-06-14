@@ -7,7 +7,7 @@ export function isString(obj: any): obj is string {
     return Object.prototype.toString.call(obj) === '[object String]';
 }
 
-export function isArray(obj: any): obj is Array<any> {
+export function isArray(obj: any): obj is any[] {
     return Object.prototype.toString.call(obj) === '[object Array]';
 }
 
