@@ -6,6 +6,7 @@ describe('camel data', () => {
     describe('test string', () => {
         require('./camel-string');
     });
-    describe('teste ICamel', () => {});
-    describe('test allCamel[]', () => {});
+    describe('teste ICamel & ICamel[]', () => {
+        require('./camel-ICamel');
+    });
 });
