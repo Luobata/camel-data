@@ -89,27 +89,31 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__transform__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__help__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__help__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__transform__ = __webpack_require__(3);
+/**
+ * @description canel
+ */
 
 
+// tslint:disable no-any no-unsafe-any
 const camelTrans = (input) => {
-    if (Object(__WEBPACK_IMPORTED_MODULE_1__help__["a" /* isArray */])(input)) {
-        // ICamel[]
+    if (Object(__WEBPACK_IMPORTED_MODULE_0__help__["a" /* isArray */])(input)) {
+        // type ICamel[]
         return input.map((v) => {
             return camelTrans(v);
         });
         // } else if (isCamel(input)) {
     }
-    else if (Object(__WEBPACK_IMPORTED_MODULE_1__help__["b" /* isObject */])(input)) {
-        // ICamel
+    else if (Object(__WEBPACK_IMPORTED_MODULE_0__help__["b" /* isObject */])(input)) {
+        // typ ICamel
         const result = {};
         const keys = Object.keys(input);
         for (const i of keys) {
-            if (Object(__WEBPACK_IMPORTED_MODULE_1__help__["b" /* isObject */])(input[i])) {
+            if (Object(__WEBPACK_IMPORTED_MODULE_0__help__["b" /* isObject */])(input[i])) {
                 result[camelTrans(i)] = camelTrans(input[i]);
             }
-            else if (Object(__WEBPACK_IMPORTED_MODULE_1__help__["a" /* isArray */])(input[i])) {
+            else if (Object(__WEBPACK_IMPORTED_MODULE_0__help__["a" /* isArray */])(input[i])) {
                 // default not to trans Array in object key
                 // as it may just be a value
                 result[camelTrans(i)] = input[i];
@@ -120,9 +124,9 @@ const camelTrans = (input) => {
         }
         return result;
     }
-    else if (Object(__WEBPACK_IMPORTED_MODULE_1__help__["c" /* isString */])(input)) {
+    else if (Object(__WEBPACK_IMPORTED_MODULE_0__help__["c" /* isString */])(input)) {
         // string
-        return Object(__WEBPACK_IMPORTED_MODULE_0__transform__["a" /* default */])(input);
+        return Object(__WEBPACK_IMPORTED_MODULE_1__transform__["a" /* default */])(input);
     }
     else {
         return input;
@@ -134,21 +138,6 @@ const camelTrans = (input) => {
 
 /***/ }),
 /* 2 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/**
- * @description data transform to camel
- */
-/* harmony default export */ __webpack_exports__["a"] = ((input) => {
-    return input.replace(/[-_][^-_]/g, (match) => {
-        return match.charAt(1).toUpperCase();
-    });
-});
-
-
-/***/ }),
-/* 3 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -168,6 +157,21 @@ function isArray(obj) {
 function isObject(obj) {
     return Object.prototype.toString.call(obj) === '[object Object]';
 }
+
+
+/***/ }),
+/* 3 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/**
+ * @description data transform to camel
+ */
+/* harmony default export */ __webpack_exports__["a"] = ((input) => {
+    return input.replace(/[-_\.][^-_\.]/g, (match) => {
+        return match.charAt(1).toUpperCase();
+    });
+});
 
 
 /***/ })

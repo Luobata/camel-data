@@ -1,13 +1,4 @@
 /**
- * @description data transform to camel
- */
-var trans = (function (input) {
-    return input.replace(/[-_][^-_]/g, function (match) {
-        return match.charAt(1).toUpperCase();
-    });
-});
-
-/**
  * @description type help
  */
 // tslint:disable no-any no-unsafe-any
@@ -21,15 +12,28 @@ function isObject(obj) {
     return Object.prototype.toString.call(obj) === '[object Object]';
 }
 
+/**
+ * @description data transform to camel
+ */
+var trans = (function (input) {
+    return input.replace(/[-_\.][^-_\.]/g, function (match) {
+        return match.charAt(1).toUpperCase();
+    });
+});
+
+/**
+ * @description canel
+ */
+// tslint:disable no-any no-unsafe-any
 var camelTrans = function camelTrans(input) {
     if (isArray(input)) {
-        // ICamel[]
+        // type ICamel[]
         return input.map(function (v) {
             return camelTrans(v);
         });
         // } else if (isCamel(input)) {
     } else if (isObject(input)) {
-        // ICamel
+        // typ ICamel
         var result = {};
         var keys = Object.keys(input);
         var _iteratorNormalCompletion = true;
