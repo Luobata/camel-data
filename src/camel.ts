@@ -5,7 +5,7 @@ import { allCamel, camel, isCamel, ICamel } from '@/interface';
 import trans from '@/transform';
 import { isArray, isObject } from 'util';
 
-const camelTrans = (input: camel): camel => {
+function camelTrans(input: camel): camel {
     if (typeof input === 'string') {
         return trans(input);
     }
@@ -19,9 +19,10 @@ const camelTrans = (input: camel): camel => {
     } else if (isCamel(input)) {
         // ICamel
         const result: ICamel = {};
-        const keys = Object.keys.call(input);
+        const keys: string[] = Object.keys(input);
         for (const i of keys) {
-            result[i] = camelTrans(keys[i]);
+            // result[i] = camelTrans(i);
+            result[<string>camelTrans(i)] = input[i];
         }
 
         return result;
@@ -29,6 +30,6 @@ const camelTrans = (input: camel): camel => {
         // string
         return trans(input);
     }
-};
+}
 
 export default camelTrans;
