@@ -1,3 +1,4 @@
+/* eslint-disable */
 const path = require('path');
 const webpack = require('webpack');
 const root = path.resolve(__dirname, '../');
@@ -16,7 +17,7 @@ module.exports = {
     output: {
         path: root + '/',
         publicPath: '/',
-        filename: 'bundle.js',
+        filename: 'camel.js',
     },
 
     resolve: {
