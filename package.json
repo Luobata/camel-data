@@ -1,8 +1,9 @@
 {
     "name": "camel-data",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "description": "",
-    "main": "dist/bundle.js",
+    "main": "dist/camel-data.js",
+    "module": "dist/camel.esm.js",
     "scripts": {
         "build": "node build/build.js",
         "build:esm": "rollup -c build/rollup.config.js",
