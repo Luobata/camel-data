@@ -1,6 +1,6 @@
 {
     "name": "camel-data",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "description": "",
     "main": "dist/camel-data.js",
     "module": "dist/camel.esm.js",
