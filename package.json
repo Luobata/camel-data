@@ -1,9 +1,10 @@
 {
     "name": "camel-data",
-    "version": "0.0.4",
+    "version": "0.0.5",
     "description": "",
     "main": "dist/camel-data.js",
     "module": "dist/camel.esm.js",
+    "types": "src/index.d.ts",
     "scripts": {
         "build": "node build/build.js",
         "build:esm": "rollup -c build/rollup.config.js",
