@@ -4,4 +4,6 @@
 
 import { camel } from '@/interface';
 
-export declare function cameelTrans(input: camel): camel;
+declare function camelTrans(input: camel): camel;
+
+export = camelTrans;
