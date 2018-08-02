@@ -7,11 +7,11 @@ import trans from '@/transform';
 
 // tslint:disable no-any no-unsafe-any
 
-const config: IConf = {
-    array: 'never',
-};
-
 const camelTrans: Function = (input: camel, conf?: IConf): camel => {
+    const config: IConf = {
+        array: 'never',
+    };
+
     if (conf) {
         Object.assign(config, conf);
     }
@@ -19,7 +19,7 @@ const camelTrans: Function = (input: camel, conf?: IConf): camel => {
         // type ICamel[]
         return input.map(
             (v: allCamel): allCamel => {
-                return <allCamel>camelTrans(v);
+                return <allCamel>camelTrans(v, conf);
             },
         );
         // } else if (isCamel(input)) {
@@ -29,14 +29,20 @@ const camelTrans: Function = (input: camel, conf?: IConf): camel => {
         const keys: string[] = Object.keys(input);
         for (const i of keys) {
             if (isObject(input[i])) {
-                result[<string>camelTrans(i)] = camelTrans(input[i]);
+                result[<string>camelTrans(i, conf)] = camelTrans(
+                    input[i],
+                    conf,
+                );
             } else if (isArray(input[i])) {
                 // default not to trans Array in object key
                 // as it may just be a value
                 if (config.array === 'never') {
-                    result[<string>camelTrans(i)] = input[i];
+                    result[<string>camelTrans(i, conf)] = input[i];
                 } else if (config.array === 'always') {
-                    result[<string>camelTrans(i)] = camelTrans(input[i]);
+                    result[<string>camelTrans(i, conf)] = camelTrans(
+                        input[i],
+                        conf,
+                    );
                 } else if (config.array === 'object') {
                     const arr: any[] = [];
                     for (
@@ -45,15 +51,15 @@ const camelTrans: Function = (input: camel, conf?: IConf): camel => {
                         j = j + 1
                     ) {
                         if (isObject((<any[]>input[i])[j])) {
-                            arr[j] = camelTrans((<any[]>input[i])[j]);
+                            arr[j] = camelTrans((<any[]>input[i])[j], conf);
                         } else {
                             arr[j] = (<any[]>input[i])[j];
                         }
                     }
-                    result[<string>camelTrans(i)] = arr;
+                    result[<string>camelTrans(i, conf)] = arr;
                 }
             } else {
-                result[<string>camelTrans(i)] = input[i];
+                result[<string>camelTrans(i, conf)] = input[i];
             }
         }
 
