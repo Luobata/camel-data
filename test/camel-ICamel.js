@@ -68,5 +68,3 @@ it('basic usage', function() {
         },
     ]);
 });
-
-it('basic usage', function() {});

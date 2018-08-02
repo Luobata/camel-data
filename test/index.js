@@ -12,8 +12,8 @@ window.onload = () => {
 
     // a = camel(input);
 
-    console.log(a);
-    console.log(input);
+    // console.log(a);
+    // console.log(input);
 
     input = [
         'city_id',
@@ -34,5 +34,26 @@ window.onload = () => {
     ];
     a = camel(input);
 
-    console.log(a);
+    // console.log(a);
+    input = {
+        list_id: [
+            'city_id',
+            true,
+            {
+                user_name: 'abc',
+                project_id: 2,
+                'activity-type': {
+                    city_id: 3,
+                    provice_id: ['p_id'],
+                    dis_ids: [
+                        {
+                            u_name: 1,
+                        },
+                    ],
+                },
+            },
+        ],
+    };
+    // console.log(camel(input, { array: 'always' }));
+    console.log(camel(input, { array: 'object' }));
 };
