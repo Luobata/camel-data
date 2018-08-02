@@ -2,8 +2,8 @@
  * @description declare
  */
 
-import { camel } from '@/interface';
+import { camel, IConf } from '@/interface';
 
-declare function camelTrans(input: camel): camel;
+declare function camelTrans(input: camel, config?: IConf): camel;
 
 export = camelTrans;
