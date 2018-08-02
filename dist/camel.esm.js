@@ -25,11 +25,17 @@ var trans = (function (input) {
  * @description canel
  */
 // tslint:disable no-any no-unsafe-any
-var camelTrans = function camelTrans(input) {
+var camelTrans = function camelTrans(input, conf) {
+    var config = {
+        array: 'never'
+    };
+    if (conf) {
+        Object.assign(config, conf);
+    }
     if (isArray(input)) {
         // type ICamel[]
         return input.map(function (v) {
-            return camelTrans(v);
+            return camelTrans(v, conf);
         });
         // } else if (isCamel(input)) {
     } else if (isObject(input)) {
@@ -45,13 +51,27 @@ var camelTrans = function camelTrans(input) {
                 var i = _step.value;
 
                 if (isObject(input[i])) {
-                    result[camelTrans(i)] = camelTrans(input[i]);
+                    result[camelTrans(i, conf)] = camelTrans(input[i], conf);
                 } else if (isArray(input[i])) {
                     // default not to trans Array in object key
                     // as it may just be a value
-                    result[camelTrans(i)] = input[i];
+                    if (config.array === 'never') {
+                        result[camelTrans(i, conf)] = input[i];
+                    } else if (config.array === 'always') {
+                        result[camelTrans(i, conf)] = camelTrans(input[i], conf);
+                    } else if (config.array === 'object') {
+                        var arr = [];
+                        for (var j = 0; j < input[i].length; j = j + 1) {
+                            if (isObject(input[i][j])) {
+                                arr[j] = camelTrans(input[i][j], conf);
+                            } else {
+                                arr[j] = input[i][j];
+                            }
+                        }
+                        result[camelTrans(i, conf)] = arr;
+                    }
                 } else {
-                    result[camelTrans(i)] = input[i];
+                    result[camelTrans(i, conf)] = input[i];
                 }
             }
         } catch (err) {
