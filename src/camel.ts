@@ -2,12 +2,19 @@
  * @description canel
  */
 import { isArray, isObject, isString } from '@/help';
-import { allCamel, camel, ICamel } from '@/interface';
+import { allCamel, camel, ICamel, IConf } from '@/interface';
 import trans from '@/transform';
 
 // tslint:disable no-any no-unsafe-any
 
-const camelTrans: Function = (input: camel): camel => {
+const config: IConf = {
+    array: 'never',
+};
+
+const camelTrans: Function = (input: camel, conf?: IConf): camel => {
+    if (conf) {
+        Object.assign(config, conf);
+    }
     if (isArray(input)) {
         // type ICamel[]
         return input.map(
@@ -26,7 +33,25 @@ const camelTrans: Function = (input: camel): camel => {
             } else if (isArray(input[i])) {
                 // default not to trans Array in object key
                 // as it may just be a value
-                result[<string>camelTrans(i)] = input[i];
+                if (config.array === 'never') {
+                    result[<string>camelTrans(i)] = input[i];
+                } else if (config.array === 'always') {
+                    result[<string>camelTrans(i)] = camelTrans(input[i]);
+                } else if (config.array === 'object') {
+                    const arr: any[] = [];
+                    for (
+                        let j: number = 0;
+                        j < (<any[]>input[i]).length;
+                        j = j + 1
+                    ) {
+                        if (isObject((<any[]>input[i])[j])) {
+                            arr[j] = camelTrans((<any[]>input[i])[j]);
+                        } else {
+                            arr[j] = (<any[]>input[i])[j];
+                        }
+                    }
+                    result[<string>camelTrans(i)] = arr;
+                }
             } else {
                 result[<string>camelTrans(i)] = input[i];
             }

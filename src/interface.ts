@@ -13,3 +13,8 @@ export type camel = allCamel | allCamel[];
 export function isCamel(obj: object): obj is ICamel {
     return Object.prototype.toString.call(obj) === '[object Object]';
 }
+
+// array support: never / always / object
+export interface IConf {
+    array: string;
+}
