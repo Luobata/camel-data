@@ -45,9 +45,11 @@ window.onload = () => {
                 'activity-type': {
                     city_id: 3,
                     provice_id: ['p_id'],
+                    city_name: 'bei_jing',
                     dis_ids: [
                         {
                             u_name: 1,
+                            city_name: 'jing_dong',
                         },
                     ],
                 },

@@ -17,6 +17,7 @@ const input = {
                 dis_ids: [
                     {
                         u_name: 1,
+                        u_id: 'o_k',
                     },
                 ],
             },
@@ -40,6 +41,7 @@ it('array config never', () => {
                     dis_ids: [
                         {
                             u_name: 1,
+                            u_id: 'o_k',
                         },
                     ],
                 },
@@ -64,6 +66,7 @@ it('array config always', () => {
                     disIds: [
                         {
                             uName: 1,
+                            uId: 'o_k',
                         },
                     ],
                 },
@@ -88,6 +91,7 @@ it('array config object', () => {
                     disIds: [
                         {
                             uName: 1,
+                            uId: 'o_k',
                         },
                     ],
                 },
