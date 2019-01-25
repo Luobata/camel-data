@@ -28,7 +28,11 @@ const camelTrans: Function = (input: camel, conf?: IConf): camel => {
         const result: ICamel = {};
         const keys: string[] = Object.keys(input);
         for (const i of keys) {
-            if (isObject(input[i])) {
+            // 增加逻辑，如果i的对应存在则跳过并保留
+            const camelKey: string = trans(i);
+            if (input[camelKey] !== undefined) {
+                result[i] = input[i];
+            } else if (isObject(input[i])) {
                 result[<string>camelTrans(i, conf)] = camelTrans(
                     input[i],
                     conf,

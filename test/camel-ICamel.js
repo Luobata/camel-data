@@ -68,3 +68,41 @@ it('basic usage', function() {
         },
     ]);
 });
+
+it('ignore the key if its camel string exist', function() {
+    input = {
+        user_name: 'abc',
+        userName: '123',
+        project_id: 2,
+        'activity-type': {
+            city_id: 3,
+        },
+    };
+    result = camel(input);
+    assert.deepEqual(result, {
+        user_name: 'abc',
+        userName: '123',
+        projectId: 2,
+        activityType: {
+            cityId: 3,
+        },
+    });
+
+    input = {
+        userName: '123',
+        user_name: 'abc',
+        project_id: 2,
+        'activity-type': {
+            city_id: 3,
+        },
+    };
+    result = camel(input);
+    assert.deepEqual(result, {
+        user_name: 'abc',
+        userName: '123',
+        projectId: 2,
+        activityType: {
+            cityId: 3,
+        },
+    });
+});

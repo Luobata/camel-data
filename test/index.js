@@ -3,6 +3,7 @@ import camel from '../src';
 window.onload = () => {
     let a = camel('user_name');
     let input = {
+        userName: '123',
         user_name: 'abc',
         project_id: 2,
         'activity-type': {
@@ -10,7 +11,7 @@ window.onload = () => {
         },
     };
 
-    // a = camel(input);
+    a = camel(input);
 
     // console.log(a);
     // console.log(input);
