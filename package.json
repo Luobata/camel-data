@@ -1,6 +1,6 @@
 {
     "name": "camel-data",
-    "version": "0.0.7",
+    "version": "0.0.8",
     "description": "",
     "main": "dist/camel-data.js",
     "module": "dist/camel.esm.js",
@@ -12,7 +12,8 @@
         "dev:test": "node build/dev-server.js",
         "test": "cross-env NODE_ENV=test mocha --compilers js:babel-core/register test/test.js",
         "tslint": "tslint -c tslint.json -r src/ -p ./tsconfig.json",
-        "lint": "eslint --fix src/"
+        "lint": "eslint --fix src/",
+        "pre-publish": "npm run build && npm run build:esm"
     },
     "devDependencies": {
         "@types/node": "^9.3.0",

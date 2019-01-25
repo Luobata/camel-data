@@ -50,7 +50,11 @@ var camelTrans = function camelTrans(input, conf) {
             for (var _iterator = keys[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
                 var i = _step.value;
 
-                if (isObject(input[i])) {
+                // 增加逻辑，如果i的对应存在则跳过并保留
+                var camelKey = trans(i);
+                if (input[camelKey] !== undefined) {
+                    result[i] = input[i];
+                } else if (isObject(input[i])) {
                     result[camelTrans(i, conf)] = camelTrans(input[i], conf);
                 } else if (isArray(input[i])) {
                     // default not to trans Array in object key
