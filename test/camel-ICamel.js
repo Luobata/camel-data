@@ -6,6 +6,9 @@ let input;
 it('basic usage', function() {
     // ICamel
     input = {
+        data: {
+            user_key: 1,
+        },
         user_name: 'abc',
         project_id: 2,
         'activity-type': {
@@ -14,6 +17,9 @@ it('basic usage', function() {
     };
     result = camel(input);
     assert.deepEqual(result, {
+        data: {
+            userKey: 1,
+        },
         userName: 'abc',
         projectId: 2,
         activityType: {
@@ -23,6 +29,9 @@ it('basic usage', function() {
 
     // assure the inpu data won't be changed
     assert.deepEqual(input, {
+        data: {
+            user_key: 1,
+        },
         user_name: 'abc',
         project_id: 2,
         'activity-type': {

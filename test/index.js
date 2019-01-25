@@ -10,6 +10,18 @@ window.onload = () => {
             city_id: 3,
         },
     };
+    input = { status: 'success', data: { total: 0, page_data: [] } };
+    input = {
+        userName: '123',
+        user_name: 'abc',
+        project_id: 2,
+        data: {
+            user_key: 1,
+        },
+        'activity-type': {
+            city_id: 3,
+        },
+    };
 
     a = camel(input);
 
