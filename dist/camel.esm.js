@@ -52,7 +52,7 @@ var camelTrans = function camelTrans(input, conf) {
 
                 // 增加逻辑，如果i的对应存在则跳过并保留
                 var camelKey = trans(i);
-                if (input[camelKey] !== undefined) {
+                if (camelKey !== i && input[camelKey] !== undefined) {
                     result[i] = input[i];
                 } else if (isObject(input[i])) {
                     result[camelTrans(i, conf)] = camelTrans(input[i], conf);
